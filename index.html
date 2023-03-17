@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head> 
+
+    <body>
+        <!--header-->
+        <h1>
+            <b>HR SALARY PREDICTION</b>
+        </h1>
+        <style>
+            h1{color: rgb(245, 199, 13);text-align: center;font-size: 35px;font-family: 'Times New Roman';}
+        </style>
+        
+        <!--//header-->
+        <div class="head-line">
+            <h2>Predict whether the salary is <=50K or >50K</h2>
+            <style>
+                h2{color: rgb(17, 219, 64);text-align: center;font-weight: bolder;font-family: 'Calibri';font-style: oblique;font-size: 20px;}
+            </style>
+        </div>
+        <!-- content -->
+        <div class="main-content-agile">
+            <div class="sub-main-w3">
+                <form action="{{ url_for('predict')}}"method="post">
+                    <div class="form-style-agile">
+                        <label>Age</label>
+                            <div class="pom-agile">
+                                <input placeholder="Age(Ex: 29.0)" name="age" type="float" required="">
+                            </div>
+                    </div>
+                    
+                   
+                <div class="form-style-agile">
+                    <label>Workclass</label>
+                    <div class="pom-agile">
+                        <select class="dropdown"  id="Workclass" name="workclass" >
+                              <option  selected >Select Workclass</option>
+                              <option value=3>Private</option>
+                              <option value=5>Self-emp-not-inc</option>
+                              <option value=1>Local-gov</option>
+                              <option value=6>State-gov</option>
+                              <option value=4>Self-emp-inc</option>
+                              <option value=0>Federal-gov</option>
+                              <option value=7>Without-pay</option>
+                              <option value=2>Never-worked</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-style-agile">
+                    <label>Education</label>
+                        <div class="pom-agile">
+                            <select class="dropdown" id="Education" name="education">
+                                  <option selected>Select Education</option>
+                                  <option value=5>School</option>
+                                  <option value=2>HS-Grad</option>
+                                  <option value=0>Bachelors</option>
+                                  <option value=3>Higher</option>
+                                  <option value=4>Masters</option>
+                                  <option value=1>Doctorate</option>
+                            </select>
+                        </div>
+                </div>
+    
+                <div class="form-style-agile">
+                    <label>Marital_status</label>
+                        <div class="pom-agile">
+                            <select class="dropdown" id="Marital_status" name="marital-status">
+                                  <option selected>Select Marital_status</option>
+                                  <option value=0>Married</option>
+                                  <option value=1>Never-married</option>
+                                  <option value=2>Others</option>
+                            </select>
+                        </div>
+                </div>
+    
+                <div class="form-style-agile">
+                    <label>Occupation</label>
+                        <div class="pom-agile">
+                            <select class="dropdown" id="Occupation" name="occupation">
+                                  <option selected>Select Occupation</option>
+                                  <option value=9>Prof-specialty</option>
+                                  <option value=3>Exec-managerial</option>
+                                  <option value=0>Adm-clerical</option>
+                                  <option value=2>Craft-repair</option>
+                                  <option value=11>Sales</option>
+                                  <option value=7>Other-service</option>
+                                  <option value=6>Machine-op-inspct</option>
+                                  <option value=13>Transport-moving</option>
+                                  <option value=5>Handlers-cleaners</option>
+                                  <option value=4>Farming-fishing</option>
+                                  <option value=12>Tech-support</option>
+                                  <option value=10>Protective-serv</option>
+                                  <option value=8>Priv-house-serv</option>
+                                  <option value=1>Armed-Forces</option>
+                            </select>
+                        </div>
+                </div>
+    
+                <div class="form-style-agile">
+                    <label>Relationship</label>
+                        <div class="pom-agile">
+                            <select class="dropdown" id="Relationship" name="relationship">
+                                <option selected>Select Relationship</option>
+                                <option value=0>Husband</option>
+                                <option value=1>Not-in-family</option>
+                                <option value=3>Own-child</option>
+                                <option value=4>Unmarried</option>
+                                <option value=5>Wife</option>
+                                <option value=2>Other-relative</option>>
+                                  
+                            </select>
+                        </div>
+                </div>
+                <div class="form-style-agile">
+                    <label>Race</label>
+                        <div class="pom-agile">
+                            <select class="dropdown" id="Race" name="race">
+                                <option selected> Select Race</option>
+                                <option value=4>White</option>
+                                <option value=2>Black</option>
+                                <option value=1>Asian-Pac-Islander</option>
+                                <option value=0>Amer-Indian-Eskimo</option>
+                                <option value=3>Other</option>
+                            </select>
+                        </div>
+                </div>
+    
+                <div class="form-style-agile">
+                    <label>Sex</label>
+                        <div class="pom-agile">
+                            <select class="dropdown" id="Sex" name="sex">
+                                <option selected>Select Sex</option>
+                                <option value=1>Male</option>
+                                <option value=0>Female</option>
+                            </select>
+                        </div>
+                </div>
+
+                <div class="form-style-agile">
+                    <label>Native_country</label>
+                        <div class="pom-agile">
+                            <select class="dropdown" id="Native_Country" name="native-country">
+                                <option selected>Select Native_country</option>
+                                <option value=38>United States</option>
+                                <option value=25>Mexico</option>
+                                <option value=29>Philippines</option>
+                                <option value=10>Germany</option>
+                                <option value=1>Canada</option>
+                                <option value=32>Puerto-Rico</option>
+                                <option value=7>El-Salvador</option>
+                                <option value=18>India</option>
+                                <option value=4>Cuba</option>
+                                <option value=8>England</option>
+                                <option value=22>Jamaica</option>
+                                <option value=34>South</option>
+                                <option value=2>China</option>
+                                <option value=21>Italy</option>
+                                <option value=5>Dominican Republic</option>
+                                <option value=39>Vietnam</option>
+                                <option value=23>Japan</option>
+                                <option value=12>Guatemala</option>
+                                <option value=30>Poland</option>
+                                <option value=3>Columbia</option>
+                                <option value=35>Taiwan</option>
+                                <option value=13>Haiti</option>
+                                <option value=19>Iran</option>
+                                <option value=31>Portugal</option>
+                                <option value=26>Nicaragua</option>
+                                <option value=28>Peru</option>
+                                <option value=9>France</option>
+                                <option value=11>Greece</option>
+                                <option value=6>Ecuador</option>
+                                <option value=20>Ireland</option>
+                                <option value=16>Hong</option>
+                                <option value=0>Cambodia</option>
+                                <option value=37>Trinadad&Tobago</option>
+                                <option value=24>Laos</option>
+                                <option value=36>Thailand</option>
+                                <option value=40>Yugoslavia</option>
+                                <option value=27>Outlying-US(Guam-USVI-etc)</option>
+                                <option value=15>Honduras</option>
+                                <option value=17>Hungary</option>
+                                <option value=33>Scotland</option>
+                                <option value=14>Holand-Netherlands</option>  
+                            </select>
+                        </div>
+                </div>
+                
+                
+                <div class="form-style-agile">
+                     <label>Hours_per_week</label>
+                         <div class="pom-agile">
+                             <input placeholder="Hours_per_week(Ex: 40.0)" name="hours-per-week" type="text" required="">
+                         </div>
+                </div>
+                
+    
+                <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+                </form>
+            </div>
+        </div>
+        
+      </div>
+    
+    
+    
+                    
+               
+    
+    </body>
+    
+</html>
